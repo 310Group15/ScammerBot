@@ -1,8 +1,9 @@
 import chatbotClasses
 def main():
-    cont = True
-    while cont:
-        cont = chatbotClasses.ReadInput.read()
+    while True:
+        userInput = input("You: ")
+        op = chatbotClasses.ReadInput.read(userInput)
+        print(op)
 
 if __name__ == "__main__":
     main()
