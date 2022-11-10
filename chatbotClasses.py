@@ -20,13 +20,13 @@ class ReadInput:
 
     #read user input and return false if the user inputs the key phrase to end the session
     @staticmethod
-    def read():
-        userInput = input("You: ")
-        if userInput.lower() == "end session":
-            return False
+    def read(userInput):
+        # if userInput.lower() == "end session":
+        #     return "END_SESSION"
         if ReadInput.validate(userInput):
-            print(ReadInput.USERNAME + ": " + ReadInput.process(userInput))
-        return True
+            return (ReadInput.USERNAME + ": " + ReadInput.process(userInput))
+        else:
+            return ("Invalid Input")
         
     #process the user input by splitting it into individual words and removing special characters, then pass it on for analysis
     @staticmethod
