@@ -1,6 +1,8 @@
 from random import randrange
 import re
-
+import spacy 
+from spacytextblob.spacytextblob import SpacyTextBlob
+from textblob import TextBlob
 #class to deal with reading, validating, and processing user input before analysis
 class ReadInput:
     #Constants for bots username on chat forum and cursewords that the bot does not appreciate
@@ -28,10 +30,15 @@ class ReadInput:
         else:
             return ("Invalid Input")
         
-    #process the user input by splitting it into individual words and removing special characters, then pass it on for analysis
+    #process the user input by splitting it into individual words and removing special characters and correcting spelling, then pass it on for analysis
     @staticmethod
     def process(userInput):
-        wordList = re.split(r'\s+|[,;?!.-]\s*',userInput.lower())
+        wordList_corrected = TextBlob(userInput)
+        testword = wordList_corrected.correct()
+       # print(testword)
+        wordList = re.split(r'\s+|[,;?!.-]\s*',str(testword))
+       
+       
         #print(wordList)
         response = InputAnalysis.checkAllResponses(wordList) #see comments in other class
         return response
@@ -124,7 +131,7 @@ class InputAnalysis:
         
         #call helper to populate dictionary for all responses in Response class
         #here we specify the words we expect to see in the user input and the required words for each response category
-        helper(Response.getResponse(Response.GREETING),["hi","hey","sup","hello"],singleWord=True)
+        helper(Response.getResponse(Response.GREETING),["hi","hey","sup","hello", "salutation"],singleWord=True)
         helper(Response.getResponse(Response.HOW_I_AM),["how","are","you","doing"],requiredWords=["how","you"])
         helper(Response.getResponse(Response.DOING_WELL),["im","good","doing","well","great"],requiredWords=["doing"])
         helper(Response.getResponse(Response.DOING_BAD),["im","bad","doing","poorly"],requiredWords=["doing"])
