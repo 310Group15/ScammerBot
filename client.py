@@ -8,7 +8,7 @@ FORMAT = "utf-8"
 DISCONNECT_MESSAGE = "!DISCONNECT"
 SERVER = socket.gethostbyname(socket.gethostname())
 ADDR = (SERVER,PORT)
-MAX_MESSAGES = 5
+MAX_MESSAGES = 15
 
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client.connect(ADDR)
