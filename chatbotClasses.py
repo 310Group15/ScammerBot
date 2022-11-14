@@ -1,8 +1,6 @@
 from random import randrange
 import re
-import spacy 
-from spacytextblob.spacytextblob import SpacyTextBlob
-from textblob import TextBlob
+
 #class to deal with reading, validating, and processing user input before analysis
 class ReadInput:
     #Constants for bots username on chat forum and cursewords that the bot does not appreciate
@@ -33,12 +31,7 @@ class ReadInput:
     #process the user input by splitting it into individual words and removing special characters and correcting spelling, then pass it on for analysis
     @staticmethod
     def process(userInput):
-        wordList_corrected = TextBlob(userInput)
-        testword = wordList_corrected.correct()
-       # print(testword)
-        wordList = re.split(r'\s+|[,;?!.-]\s*',str(testword))
-       
-       
+        wordList = re.split(r'\s+|[,;?!.-]\s*',userInput.lower())
         #print(wordList)
         response = InputAnalysis.checkAllResponses(wordList) #see comments in other class
         return response
