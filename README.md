@@ -25,3 +25,7 @@ This class is the bulk of the chatbot; it houses the probability function to det
 ## Socket Feature
 
 The socket feature was developed according to a standard client-server model. One script allows a host to act as a server on its local network and the other script allows a client to connect to the host. For demonstration purposes, the host and client are configured to run on the same machine, but this can be altered at will by changing the IP address constants in each script. Our implementation requires both server and client to specify how long the message they plan to send is in a padded 64-byte utf-8 encoded string before sending the actual message. Also for demonstration purposes, the chatbots only converse for 5 call-response pairs. A helpful video used when configuring the python sockets can be found [here](https://www.youtube.com/watch?v=3QiPPX-KeSc).
+
+## GUI
+
+The GUI presents a slightly cleaner view to the user. It was implemented using PySimpleGUI. It is a simple window where the user can input their statement and click the "Send" button to generate the chatbot response. The window shows a short history of the conversation (10 lines). The oldest two lines are eliminated each time the user inputs a statement and receives a response.
