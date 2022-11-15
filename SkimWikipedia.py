@@ -25,7 +25,7 @@ def Create_Definition_list(link):
 
 
 
-def Get_Wiki_infofails(link):
+def Get_Wiki_infofails():
 
     def_doc = nlp(str(definitions))
     nsubj = [] 
