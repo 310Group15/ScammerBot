@@ -12,13 +12,13 @@ nlp = spacy.load('en_core_web_sm')
 nlp.add_pipe('spacytextblob')
 def find_Subject(inputs):
     
-    piano_class_doc = nlp(inputs)
+    the_doc = nlp(inputs)
     sents = []
-    sents = list(piano_class_doc.sents)
+    sents = the_doc.sents
     
     for sentence in sents:
         sent = sentence
-        print(sent)
+        print(sent, 'asssssssasdfasgdfsfg')
         for ent in sent.ents:      
             if ent.label_ == 'PERSON':                    #pos to identify search term
                 print(ent.text + '     :person')
@@ -29,9 +29,9 @@ def find_Subject(inputs):
                 return token.text
 def find_Sentiment(inputs):
     
-    piano_class_doc = nlp(inputs)
+    the_doc = nlp(inputs)
     sents = []
-    sents = list(piano_class_doc.sents)
+    sents = list(the_doc.sents)
     for sentence in sents:
         sent = sentence
         for ent in sent.ents:      

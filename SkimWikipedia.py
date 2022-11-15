@@ -1,6 +1,6 @@
 from queue import Empty
 import bs4 as bs
-import urllib.request
+import urllib.request, lxml
 import spacy 
 from spacytextblob.spacytextblob import SpacyTextBlob
 from textblob import TextBlob
@@ -14,10 +14,12 @@ definitions = []
 
 
 def Create_Definition_list(link):
+    print(link)
     url=urllib.request.urlopen(link)
     soup=bs.BeautifulSoup(url,'lxml')
     for paragraph in soup.find_all('p'):
         definitions.append(str(paragraph.text))
+    
     return definitions
 
 

@@ -9,12 +9,13 @@ import random
 # create sentence based on inputted statement. search for proper noun or persons name in statemetn and assemble sentence based on noun or name. 
 # perform sentiment analysis on input, and cerate sentence that matches inputs sentiment 
 
-def getWikiResponse():
+def getWikiResponse(search):
     nlp = spacy.load('en_core_web_sm')
 
     nlp.add_pipe('spacytextblob')
 
-    search = 'Abraham Lincon was the best president ever in the history of the world'
+
+    
     nsubj = []
     aux = []
     dobj = []
@@ -39,7 +40,9 @@ def getWikiResponse():
         return False
 
     if sentiment >= 0: 
-        return('ah, ', Find_Subject.find_Subject(search), 'I like how ' ,nsubj[random.randint(0,len(nsubj)-1)],dobj[random.randint(0,len(dobj)-1)],aux[random.randint(0,len(aux)-1)],root[random.randint(0,len(root)-1)],nsubj[random.randint(0,len(nsubj)-1)])
+        goodresp = 'ah, '+ str(Find_Subject.find_Subject(search))+ ' I like how ' +str(nsubj[random.randint(0,len(nsubj)-1)])+' '+str(dobj[random.randint(0,len(dobj)-1)])+' '+str(aux[random.randint(0,len(aux)-1)])+' '+str(root[random.randint(0,len(root)-1)])+' '+str(nsubj[random.randint(0,len(nsubj)-1)])
+        return goodresp
 
     if sentiment <= 0:
-        return('ah, ', Find_Subject.find_Subject(search), 'I dislike how ' ,nsubj[random.randint(0,len(nsubj)-1)],dobj[random.randint(0,len(dobj)-1)],aux[random.randint(0,len(aux)-1)],root[random.randint(0,len(root)-1)],nsubj[random.randint(0,len(nsubj)-1)])
+        badresp = 'ah, '+str(Find_Subject.find_Subject(search))+ ' I dislike how ' +nsubj[random.randint(0,len(nsubj)-1)]+dobj[random.randint(0,len(dobj)-1)]+aux[random.randint(0,len(aux)-1)]+root[random.randint(0,len(root)-1)]+nsubj[random.randint(0,len(nsubj)-1)]
+        return badresp

@@ -3,6 +3,7 @@ import re
 import spacy 
 from spacytextblob.spacytextblob import SpacyTextBlob
 from textblob import TextBlob
+import Sentiment_Analysis
 #class to deal with reading, validating, and processing user input before analysis
 class ReadInput:
     #Constants for bots username on chat forum and cursewords that the bot does not appreciate
@@ -40,7 +41,7 @@ class ReadInput:
        
        
         #print(wordList)
-        response = InputAnalysis.checkAllResponses(wordList) #see comments in other class
+        response = InputAnalysis.checkAllResponses(wordList,userInput) #see comments in other class
         return response
         
 
@@ -133,7 +134,7 @@ class InputAnalysis:
 
     #messy way to do this, but we must check every response the chatbot knows to see if it is appropriate.
     @staticmethod
-    def checkAllResponses(userWordList):
+    def checkAllResponses(userWordList, testword):
         #create matches dictionary to store chatbot responses and their probabilities of being relevant 
         matches = {}
         
@@ -173,6 +174,11 @@ class InputAnalysis:
         #if this best match has a really low probability, just print some default response
         bestMatch = max(matches, key=matches.get)
         if matches[bestMatch] < 1:
-            return Response.getResponse(Response.UNRECOGNIZED)
+            print(testword)
+            wikiresponse = Sentiment_Analysis.getWikiResponse(testword)
+            if wikiresponse:
+                return wikiresponse
+            else:
+                return Response.getResponse(Response.UNRECOGNIZED)
         else:
             return bestMatch
