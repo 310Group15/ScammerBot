@@ -15,7 +15,7 @@ definitions = []
 
 def Create_Definition_list(link):
     url=urllib.request.urlopen(link)
-    soup=bs.BeautifulSoup(url,'lxml')
+    soup=bs.BeautifulSoup(url, "html.parser") #changed!
     for paragraph in soup.find_all('p'):
         definitions.append(str(paragraph.text))
     return definitions
