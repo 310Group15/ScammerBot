@@ -44,5 +44,5 @@ def getWikiResponse(search):
         return goodresp
 
     if sentiment <= 0:
-        badresp = 'ah, '+str(Find_Subject.find_Subject(search))+ ' I dislike how ' +nsubj[random.randint(0,len(nsubj)-1)]+dobj[random.randint(0,len(dobj)-1)]+aux[random.randint(0,len(aux)-1)]+root[random.randint(0,len(root)-1)]+nsubj[random.randint(0,len(nsubj)-1)]
+        badresp = 'ah, '+ str(Find_Subject.find_Subject(search))+ ' I dislike how ' +str(nsubj[random.randint(0,len(nsubj)-1)])+' '+str(dobj[random.randint(0,len(dobj)-1)])+' '+str(aux[random.randint(0,len(aux)-1)])+' '+str(root[random.randint(0,len(root)-1)])+' '+str(nsubj[random.randint(0,len(nsubj)-1)])
         return badresp
