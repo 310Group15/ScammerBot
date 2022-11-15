@@ -3,6 +3,7 @@ import re
 import spacy 
 from spacytextblob.spacytextblob import SpacyTextBlob
 from textblob import TextBlob
+import Sentiment_Analysis
 #class to deal with reading, validating, and processing user input before analysis
 class ReadInput:
     #Constants for bots username on chat forum and cursewords that the bot does not appreciate
@@ -173,6 +174,10 @@ class InputAnalysis:
         #if this best match has a really low probability, just print some default response
         bestMatch = max(matches, key=matches.get)
         if matches[bestMatch] < 1:
-            return Response.getResponse(Response.UNRECOGNIZED)
+            wikiresponse = Sentiment_Analysis.getWikiResponse()
+            if wikiresponse:
+                return wikiresponse
+            else:
+                return Response.getResponse(Response.UNRECOGNIZED)
         else:
             return bestMatch

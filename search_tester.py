@@ -1,5 +1,5 @@
 from bs4 import BeautifulSoup
-import requests, lxml
+#import requests, lxml
 
 
 #finds wikipedia link about subject, returns false otherwise
