@@ -49,4 +49,12 @@ The chatbot can now correct basic spelling errors like "yuo" instead of "you".
 The chatbot now has 5 things that it can say if it doesn't recognize the user input.
 
 ![image](sample_outputs/unrecognized_sample.png)
+
+
 Chatbot also uses POS and sentiment analysis to identify the subject of an unknown paragraph. It then attempts to create a novel sentence based on information from a wikipedia page based on the unknown subject in paragraph. IE if the input talks about Abraham Lincon, the bot will search wikipedia and learn that he was a president who had something to do with a war. The bot will then use POS to synthisis a sentence based on this information. 
+
+
+![image](https://user-images.githubusercontent.com/65092654/201863361-f2b2bcc3-94bf-4707-beb1-428eb50836d4.png)
+
+
+
