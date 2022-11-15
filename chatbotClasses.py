@@ -19,18 +19,17 @@ class ReadInput:
                 resp = str(ReadInput.USERNAME+ ": " + Response.getResponse(Response.SWEAR))
                 flag = False
                 return flag
-        return flag, resp
+            return flag
 
     #read user input and return false if the user inputs the key phrase to end the session
     @staticmethod
     def read(userInput):
         # if userInput.lower() == "end session":
         #     return "END_SESSION"
-        flag, resp = ReadInput.validate(userInput)
-        if flag:
+        if ReadInput.validate(userInput):
             return (ReadInput.USERNAME + ": " + ReadInput.process(userInput))
         else:
-            return (resp)
+            return (ReadInput.USERNAME+ ": " + Response.getResponse(Response.SWEAR))
         
   #process the user input by splitting it into individual words and removing special characters and correcting spelling, then pass it on for analysis
     @staticmethod
