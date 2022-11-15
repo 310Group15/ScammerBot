@@ -16,20 +16,21 @@ class ReadInput:
         flag = True
         for word in ReadInput.CURSEWORDS:
             if word in userInput:
-                print(ReadInput.USERNAME+ ": " + Response.getResponse(Response.SWEAR))
+                resp = str(ReadInput.USERNAME+ ": " + Response.getResponse(Response.SWEAR))
                 flag = False
                 return flag
-        return flag
+        return flag, resp
 
     #read user input and return false if the user inputs the key phrase to end the session
     @staticmethod
     def read(userInput):
         # if userInput.lower() == "end session":
         #     return "END_SESSION"
-        if ReadInput.validate(userInput):
+        flag, resp = ReadInput.validate(userInput)
+        if flag:
             return (ReadInput.USERNAME + ": " + ReadInput.process(userInput))
         else:
-            return ("Invalid Input")
+            return (resp)
         
   #process the user input by splitting it into individual words and removing special characters and correcting spelling, then pass it on for analysis
     @staticmethod
