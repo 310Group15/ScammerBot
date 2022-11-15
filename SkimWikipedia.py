@@ -1,11 +1,17 @@
 from queue import Empty
 import bs4 as bs
-import urllib.request, lxml
+import urllib.request
 import spacy 
 from spacytextblob.spacytextblob import SpacyTextBlob
 from textblob import TextBlob
 from spacy import displacy
 from spacy.matcher import Matcher
+
+#Skim info from wikipedia. must populate definitions before anything. 
+
+
+
+
 
 nlp = spacy.load('en_core_web_sm')
 
@@ -13,7 +19,7 @@ nlp = spacy.load('en_core_web_sm')
 definitions = []
 
 
-def Create_Definition_list(link):
+def Create_Definition_list(link):     # call me first
     print(link)
     url=urllib.request.urlopen(link)
     soup=bs.BeautifulSoup(url,'lxml')
@@ -25,7 +31,7 @@ def Create_Definition_list(link):
 
 
 
-
+# test class for robustness only. do not call
 
 def Get_Wiki_infofails():
 
@@ -42,7 +48,7 @@ def Get_Wiki_infofails():
             dobj.append(token)
     return nsubj,aux,dobj
 
-def Get_Wiki_nsubj():
+def Get_Wiki_nsubj():        # finds proper nouns, not strictly nsubj 
     def_doc = nlp(str(definitions))
     nsubj = [] 
     for token in def_doc:
@@ -50,28 +56,28 @@ def Get_Wiki_nsubj():
             nsubj.append(token)
    
     return nsubj
-def Get_Wiki_aux():
+def Get_Wiki_aux():                     # finds verbs
     def_doc = nlp(str(definitions))
     aux = [] 
     for token in def_doc:
         if token.tag_ =='VBZ':
             aux.append(token)
     return aux
-def Get_Wiki_root():
+def Get_Wiki_root():             # finds determinant( english )
     def_doc = nlp(str(definitions))
     root = [] 
     for token in def_doc:
         if token.tag_ =='DT':
             root.append(token)
     return root
-def Get_Wiki_dobj():
+def Get_Wiki_dobj():          # finds adverb
     def_doc = nlp(str(definitions))  
     dobj = [] 
     for token in def_doc:
         if token.pos_ =='ADV':
             dobj.append(token)
     return dobj
-def Get_Wiki_noun():
+def Get_Wiki_noun():           # finds noun
     def_doc = nlp(str(definitions))
     dobj = [] 
     for token in def_doc:
@@ -79,7 +85,7 @@ def Get_Wiki_noun():
             dobj.append(token)
     return dobj
 
-def Get_Wiki_info(link):
+def Get_Wiki_info(link): # not used currently, for future use
     url=urllib.request.urlopen(link)
     soup=bs.BeautifulSoup(url,'lxml')
     definitions=[]

@@ -6,7 +6,7 @@ from textblob import TextBlob
 
 
 
-#Finds Subject of sentence, if no subject is found returns false
+#Finds Subject of sentence, if no subject is found returns false. also finds sentiment of subject
 
 nlp = spacy.load('en_core_web_sm')
 nlp.add_pipe('spacytextblob')
@@ -18,8 +18,8 @@ def find_Subject(inputs):
     
     for sentence in sents:
         sent = sentence
-        print(sent, 'asssssssasdfasgdfsfg')
-        for ent in sent.ents:      
+        
+        for ent in sent.ents:      #cycvle through ents and compare for tags + labels 
             if ent.label_ == 'PERSON':                    #pos to identify search term
                 print(ent.text + '     :person')
                 return ent.text
@@ -27,11 +27,12 @@ def find_Subject(inputs):
             if token.tag_ == 'NNP':
                 print(token.text + '     :noun')
                 return token.text
+
 def find_Sentiment(inputs):
     
     the_doc = nlp(inputs)
     sents = []
-    sents = list(the_doc.sents)
+    sents = list(the_doc.sents) # investigate why this needs to be a list
     for sentence in sents:
         sent = sentence
         for ent in sent.ents:      
