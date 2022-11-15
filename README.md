@@ -29,3 +29,23 @@ The socket feature was developed according to a standard client-server model. On
 ## GUI
 
 The GUI presents a slightly cleaner view to the user. It was implemented using PySimpleGUI. It is a simple window where the user can input their statement and click the "Send" button to generate the chatbot response. The window shows a short history of the conversation (10 lines). The oldest two lines are eliminated each time the user inputs a statement and receives a response.
+
+![image](sample_outputs/gui_sample.png)
+
+## Extra topic
+
+The chatbot now responds to a few questions about weightlifting.
+
+![image](sample_outputs/lifting_sample.png)
+
+## Spellcheck
+
+The chatbot can now correct basic spelling errors like "yuo" instead of "you".
+
+![image](sample_outputs/spellcheck_sample.png)
+
+## Unrecognized input
+
+The chatbot now has 5 things that it can say if it doesn't recognize the user input.
+
+![image](sample_outputs/unrecognized_sample.png)
